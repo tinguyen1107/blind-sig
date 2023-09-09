@@ -63,3 +63,18 @@ func initConfig() {
 		fmt.Fprintln(os.Stderr, "Using config file:", viper.ConfigFileUsed())
 	}
 }
+
+func init() {
+	rootCmd.AddCommand(
+		// Generate keypair
+		genKey,
+		// Blind sign to blinded message
+		blindSign,
+		// Check Double spending
+		checkSpent,
+		// Spend
+		spend,
+		// Get balance
+		getBalance,
+	)
+}
