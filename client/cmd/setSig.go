@@ -11,8 +11,9 @@ import (
 	"examples/client/cmd/core"
 )
 
+// <index> <sig>
 var setSig = &cobra.Command{
-	Use: "setSign",
+	Use: "setSig",
 	Run: func(cmd *cobra.Command, args []string) {
 
 		var index = 0

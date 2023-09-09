@@ -16,6 +16,7 @@ init-bank:
 build:
 	@cd bank && go build -o ../cbank main.go
 	@cd client && go build -o ../cclient main.go
+	@cd store && go build -o ../cstore main.go
 
 test-flow: build init-bank
 	./cclient genTicket 100000

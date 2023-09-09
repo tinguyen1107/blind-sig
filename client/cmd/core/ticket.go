@@ -7,13 +7,14 @@ import (
 )
 
 type Ticket struct {
+	Hash                 string `json:"hash"`
 	BlindedMessage       string `json:"blined_message"`
 	Unblinder            string `json:"unblinder"`
 	SignedBlindedMessage string `json:"signed_blinded_message"`
 	SignedMessage        string `json:"signed_message"`
 }
 
-func InsertNewElement(filename string, blindedMessage, unblinder string) error {
+func InsertNewElement(filename string, hash, blindedMessage, unblinder string) error {
 	var tickets []Ticket
 
 	// Read existing tickets from file
@@ -25,6 +26,7 @@ func InsertNewElement(filename string, blindedMessage, unblinder string) error {
 	}
 
 	newTicket := Ticket{
+		Hash:           hash,
 		BlindedMessage: blindedMessage,
 		Unblinder:      unblinder,
 	}
