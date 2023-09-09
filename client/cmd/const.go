@@ -5,6 +5,7 @@ const (
 	KeySize          = 2048
 	HashSize         = 1536
 	PrivKeyFile      = "bankdb/private_key.pem"
-	PubKeyFile       = "bankdb/public_key.pem"
+	PubKeyFile       = "clientdb/public_key.pem"
 	BalanceFile      = "bankdb/balance.json"
+	DataFile         = "clientdb/data.json"
 )

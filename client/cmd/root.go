@@ -66,15 +66,11 @@ func initConfig() {
 
 func init() {
 	rootCmd.AddCommand(
-		// Generate keypair
-		genKey,
-		// Blind sign to blinded message
-		blindSign,
-		// Check Double spending
-		checkSpent,
-		// Spend
-		spend,
-		// Get balance
-		getBalance,
+		// Generate Ticket
+		genTicket,
+		// Get Not Signed Ticket
+		getNotSignedTicket,
+		// Set Signed Blinded Ticket
+		setSig,
 	)
 }

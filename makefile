@@ -13,3 +13,9 @@ init-bank:
 	cp ./bankdb/public_key.pem ./clientdb/
 	cp ./bankdb/public_key.pem ./storedb/
 
+build:
+	@cd bank && go build -o ../cbank main.go
+	@cd client && go build -o ../cclient main.go
+
+test-flow: build init-bank
+	./cclient genTicket 100000
