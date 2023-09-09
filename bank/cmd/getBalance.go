@@ -16,6 +16,7 @@ var getBalance = &cobra.Command{
 		if len(args) >= 1 && args[0] != "" {
 			userId = args[0]
 		} else {
+			fmt.Printf("Invalid args")
 			return
 		}
 		balance, err := core.GetBalance(userId, BalanceFile)

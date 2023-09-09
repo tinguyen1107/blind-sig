@@ -4,6 +4,7 @@ import (
 	"crypto/rsa"
 	"crypto/x509"
 	"encoding/pem"
+	"fmt"
 	"os"
 )
 
@@ -46,4 +47,26 @@ func savePublicKeyToFile(pubKey *rsa.PublicKey, filename string) error {
 
 	_, err = publicKeyFile.Write(pubKeyPEM)
 	return err
+}
+
+func loadPrivateKeyFromFile(filename string) (*rsa.PrivateKey, error) {
+	// Read the private key file
+	privKeyBytes, err := os.ReadFile(filename)
+	if err != nil {
+		return nil, err
+	}
+
+	// Decode PEM data
+	block, _ := pem.Decode(privKeyBytes)
+	if block == nil || block.Type != "RSA PRIVATE KEY" {
+		return nil, fmt.Errorf("failed to decode PEM block containing private key")
+	}
+
+	// Parse the private key
+	privKey, err := x509.ParsePKCS1PrivateKey(block.Bytes)
+	if err != nil {
+		return nil, err
+	}
+
+	return privKey, nil
 }
