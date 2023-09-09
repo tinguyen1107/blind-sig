@@ -1,6 +1,6 @@
 package main
 
-import "examples/secu-client/cmd"
+import "examples/bank/cmd"
 
 func main() {
 	cmd.Execute()

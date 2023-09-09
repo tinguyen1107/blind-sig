@@ -1,4 +1,4 @@
-module examples/secu-client
+module examples/bank
 
 go 1.16
 
