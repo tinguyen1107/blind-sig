@@ -10,9 +10,7 @@ import (
 
 // Receive userId
 var getBalance = &cobra.Command{
-	Use:   "getBalance",
-	Short: "This command will get the desired Gopher",
-	Long:  `This get command will call GitHub respository in order to return the desired Gopher.`,
+	Use: "getBalance",
 	Run: func(cmd *cobra.Command, args []string) {
 		var userId = ""
 		if len(args) >= 1 && args[0] != "" {
@@ -27,22 +25,6 @@ var getBalance = &cobra.Command{
 		}
 
 		fmt.Printf("%s's balance: %d", userId, balance)
-		// 	key, err := rsa.GenerateKey(rand.Reader, KeySize)
-		// 	if err != nil {
-		// 		fmt.Println("Failed to generate key:", err)
-		// 		return
-		// 	}
-		// 	err = savePrivateKeyToFile(key, PrivKeyFile)
-		// 	if err != nil {
-		// 		fmt.Println("Failed to save private key:", err)
-		// 		return
-		// 	}
-		//
-		// 	err = savePublicKeyToFile(&key.PublicKey, PubKeyFile)
-		// 	if err != nil {
-		// 		fmt.Println("Failed to save public key:", err)
-		// 		return
-		// 	}
 	},
 }
 
