@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"encoding/hex"
 	"fmt"
 
 	"github.com/cryptoballot/rsablind"
@@ -15,7 +16,7 @@ var blindSign = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		var userId = ""
 		var blindedTicket = ""
-		if len(args) >= 2 && args[0] != "" && args[2] != "" {
+		if len(args) >= 2 && args[0] != "" && args[1] != "" {
 			userId = args[0]
 			blindedTicket = args[1]
 		} else {
@@ -39,8 +40,14 @@ var blindSign = &cobra.Command{
 			fmt.Println("Failed to load private key:", err)
 			return
 		}
-		sig, err := rsablind.BlindSign(privKey, []byte(blindedTicket))
+		blindedTicketHex, err := hex.DecodeString(blindedTicket)
+		if err != nil {
+			fmt.Println("Failed to hex decode ticket:", err)
+			return
+		}
+		sig, err := rsablind.BlindSign(privKey, blindedTicketHex)
+		sigStr := hex.EncodeToString(sig)
 
-		fmt.Println(sig)
+		fmt.Println(sigStr)
 	},
 }
