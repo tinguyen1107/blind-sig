@@ -6,9 +6,11 @@ run-bank:
 	@./cbank $(filter-out $@,$(MAKECMDGOALS))
 
 prepare:
-	mkdir bankdb clientdb storedb
-	echo "[]" > ./clientdb/data.json
-	echo '[ {"user_id": "john", "balance": 100000000 }, { "user_id": "store", "balance": 900000000 } ]' > ./bankdb/balance.json
+	@echo "[Preparing data]"
+	@mkdir bankdb clientdb storedb
+	@echo "[]" > ./clientdb/data.json
+	@echo '[ {"user_id": "john", "balance": 100000000 }, { "user_id": "store", "balance": 900000000 } ]' > ./bankdb/balance.json
+	@echo "[]" > ./bankdb/spent.json
 
 init-bank:
 	@echo "[Bank]: Generate keypair"
@@ -24,3 +26,6 @@ build:
 
 test-flow: build init-bank
 	./cclient genTicket 100000
+
+clear:
+	@rm -rf bankdb clientdb storedb cclient cbank cstore

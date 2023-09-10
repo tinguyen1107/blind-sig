@@ -57,6 +57,6 @@ var spend = &cobra.Command{
 			return
 		}
 
-		core.UpdateBalance(userId, balance-SmallestDevision, BalanceFile)
+		core.UpdateBalance(userId, balance+SmallestDevision, BalanceFile)
 	},
 }
