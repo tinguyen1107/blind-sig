@@ -67,10 +67,10 @@ func initConfig() {
 func init() {
 	rootCmd.AddCommand(
 		// Generate Ticket
-		genTicket,
+		CreateGenTicketCmd(),
 		// Get Not Signed Ticket
 		getNotSignedTicket,
 		// Set Signed Blinded Ticket
-		setSig,
+		CreateSetSigCmd(),
 	)
 }
