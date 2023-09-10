@@ -7,4 +7,5 @@ const (
 	PrivKeyFile      = "bankdb/private_key.pem"
 	PubKeyFile       = "bankdb/public_key.pem"
 	BalanceFile      = "bankdb/balance.json"
+	SpentFile        = "bankdb/spent.json"
 )

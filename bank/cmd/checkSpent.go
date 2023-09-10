@@ -1,25 +1,32 @@
 package cmd
 
-import "github.com/spf13/cobra"
+import (
+	"fmt"
+
+	"github.com/spf13/cobra"
+
+	"examples/bank/cmd/core"
+)
 
 var checkSpent = &cobra.Command{
 	Use: "checkSpent",
 	Run: func(cmd *cobra.Command, args []string) {
-		// key, err := rsa.GenerateKey(rand.Reader, KeySize)
-		// if err != nil {
-		// 	fmt.Println("Failed to generate key:", err)
-		// 	return
-		// }
-		// err = saveKeyToFile(key, PrivKeyFile)
-		// if err != nil {
-		// 	fmt.Println("Failed to save private key:", err)
-		// 	return
-		// }
-		//
-		// err = savePublicKeyToFile(&key.PublicKey, PubKeyFile)
-		// if err != nil {
-		// 	fmt.Println("Failed to save public key:", err)
-		// 	return
-		// }
+		var ticket = ""
+		if len(args) >= 1 && args[0] != "" {
+			ticket = args[0]
+		} else {
+			fmt.Printf("Invalid args")
+			return
+		}
+		isSpent, err := core.IsTicketExist(ticket, SpentFile)
+		if err != nil {
+			fmt.Printf("Check spent error:", err)
+			return
+		}
+		if isSpent {
+			fmt.Printf("Ticket already used")
+		} else {
+			fmt.Printf("Ticket is new")
+		}
 	},
 }

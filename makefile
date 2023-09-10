@@ -5,6 +5,10 @@ run-bank:
 	@chmod +x cbank
 	@./cbank $(filter-out $@,$(MAKECMDGOALS))
 
+prepare:
+	mkdir bankdb clientdb storedb
+	echo "[]" > ./clientdb/data.json
+	echo '[ {"user_id": "john", "balance": 100000000 }, { "user_id": "store", "balance": 900000000 } ]' > ./bankdb/balance.json
 
 init-bank:
 	@echo "[Bank]: Generate keypair"

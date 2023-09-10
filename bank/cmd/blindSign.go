@@ -35,14 +35,20 @@ var blindSign = &cobra.Command{
 			return
 		}
 
+		core.UpdateBalance(userId, balance-SmallestDevision, BalanceFile)
+
 		privKey, err := loadPrivateKeyFromFile(PrivKeyFile)
 		if err != nil {
 			fmt.Println("Failed to load private key:", err)
+			fmt.Println("Reverse balance")
+			core.UpdateBalance(userId, balance, BalanceFile)
 			return
 		}
 		blindedTicketHex, err := hex.DecodeString(blindedTicket)
 		if err != nil {
 			fmt.Println("Failed to hex decode ticket:", err)
+			fmt.Println("Reverse balance")
+			core.UpdateBalance(userId, balance, BalanceFile)
 			return
 		}
 		sig, err := rsablind.BlindSign(privKey, blindedTicketHex)
